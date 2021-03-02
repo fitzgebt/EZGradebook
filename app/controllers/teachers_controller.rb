@@ -1,4 +1,4 @@
-class TeacherController < ApplicationController
+class TeachersController < ApplicationController
 
     get '/signup' do
         if logged_in?
@@ -14,7 +14,7 @@ class TeacherController < ApplicationController
         end
         redirect '/signup' 
     end
-    
+
     get '/teachers' do
       @teachers = Teacher.all
       erb :'/teachers/index'
