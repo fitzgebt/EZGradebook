@@ -2,10 +2,12 @@ class Teacher < ActiveRecord::Base
     has_secure_password
     has_many :assignments 
     has_many :students_assignments
-    has many :students, through: :students_assignments
+    has_many :students, through: :students_assignments
   
     validates :username, presence: true
-    validates :email, presence: true
+    validates :fname, presence: true
+    validates :lname, presence: true
+    validates :password, presence: true
   
     def slug
       self.username.downcase.gsub(" ", "-")
