@@ -1,0 +1,6 @@
+<h2><%= @teacher.lname %>, <%= @teacher.fname %></h2>
+<% @teacher.assignments.each do |assignment| %>
+    <h4><% assignment.title %><br></h4>
+    <p><% assignment.content %></p>
+    <p>--<a href="/assignments/<%= assignment.id %>" ><button>View This Assignment</button></a></p>
+<% end %>    

@@ -35,6 +35,14 @@ class TeacherswController < ApplicationController
       @teachers = Teacher.all
       erb :'/teachers/index'
     end
+
+    get 'logout' do
+        if !logged_in?
+            redirect '/'
+        end
+        session.clear
+        redirect '/'
+    end
       
     get '/teachers/:slug' do
         if logged_in?
