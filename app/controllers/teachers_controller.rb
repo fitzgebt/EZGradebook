@@ -14,6 +14,7 @@ class TeacherController < ApplicationController
         end
         redirect '/signup' 
     end
+    
     get '/teachers' do
       @teachers = Teacher.all
       erb :'/teachers/index'
