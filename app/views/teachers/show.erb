@@ -1,4 +1,5 @@
 <h2><%= @teacher.lname %>, <%= @teacher.fname %></h2>
+<p>--<a href="/logout" ><button>LogOut</button></a></p>
 <% @teacher.assignments.each do |assignment| %>
     <h4><% assignment.title %><br></h4>
     <p><% assignment.content %></p>
