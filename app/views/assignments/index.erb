@@ -1,0 +1,5 @@
+<% @assignments.each do |assignment| %>
+    <h4><%= assignment.title %></h4>
+        <p><%= assignment.content %></p>
+        <p>--<a href="/assignemnts/<%=assignment.id%>" ><button>View This Assignemnt</button></a></p>
+    <% end %>
