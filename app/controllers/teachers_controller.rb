@@ -37,8 +37,11 @@ class TeacherswController < ApplicationController
     end
       
     get '/teachers/:slug' do
-      @teacher = teacher.find_by_slug(params[:slug])
-      erb :'/teachers/show'
+        if logged_in?
+            @teacher = teacher.find_by_slug(params[:slug])
+            erb :'/teachers/show'
+        end
+        erb :'/teachers/login'
     end
 
 

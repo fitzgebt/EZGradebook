@@ -1,0 +1,4 @@
+<% @teachers.each do |teacher| %>
+    <h4><%= teacher.lname %>, <%= teacher.fname %></h4>
+        <p>--<a href="/teachers/<%= teacher.id %>" ><button>Profile</button></a></p>
+    <% end %>
