@@ -1,4 +1,4 @@
-class TeachersController < ApplicationController
+class TeacherswController < ApplicationController
 
     get '/signup' do
         if logged_in?
@@ -13,6 +13,22 @@ class TeachersController < ApplicationController
             redirect '/assignments'
         end
         redirect '/signup' 
+    end
+
+    get '/login' do
+        if logged_in?
+            redirect '/assignments'
+        end
+        erb :'/teachers/login'
+    end
+
+    post '/login' do
+        @teacher = Teacher.find_by(username: params[:teacher][:username])
+        if @teacher && @teacher.authenticate(params[:teacher][:password])
+            session[:teacher_id] = @teacher.id
+            redirect '/assignments'
+        end
+        erb :'teachers/login'
     end
 
     get '/teachers' do
