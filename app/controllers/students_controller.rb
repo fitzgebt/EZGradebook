@@ -5,7 +5,9 @@ class StudentsController < ApplicationController
     end
 
     get '/students/slug' do
+        binding.pry
         @student = Student.find_by_slug(params[:slug])
+        @assignments = Assignment.all
         erb :'/students/show'
     end
 end
