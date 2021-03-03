@@ -3,17 +3,19 @@ class AssignmentsController < ApplicationController
     get '/assignments' do
         if !logged_in?
             redirect '/login'
+        else
+            @assignments = Assignment.all
+            erb :'/assignments/index'
         end
-        @assignments = Assignment.all
-        erb :'/assignments/index'
     end
 
     
     get '/assignments/new' do 
         if !logged_in?
             redirect '/login'
+        else
+            erb :'/assignments/new'
         end
-        erb :'/assignments/new'
     end
 
     post '/assignments' do
@@ -22,16 +24,22 @@ class AssignmentsController < ApplicationController
             @assignment.teacher_id = current_user.id
             @assignment.save
             redirect "/assignments/#{@assignment.id}"
+        else
+            redirect '/assignments/new'
         end
-        redirect '/assignments/new'
     end
 
-    get 'assignmnets/edit' do
-
-    end
-
-    patch '/assignmnets/:id' do
-
+    get '/assignments/:id/edit' do
+        if !logged_in?
+            redirect '/login'
+        end   
+        @assignment = Assignment.find_by_id(params[:id])
+        if @assignment.teacher_id == current_user.id
+            erb :'/assignments/edit'
+        else
+            redirect '/assignments'
+        end
+         
     end
 
     get '/assignments/:id' do
@@ -39,9 +47,26 @@ class AssignmentsController < ApplicationController
             @assignment = Assignment.find_by_id(params[:id])
             @teacher = Teacher.find_by_id(@assignment.teacher_id)
             erb :'/assignments/show'
+        else
+            redirect '/teachers/login'
         end
-        redirect '/teachers/login'
     end
+
+    patch '/assignments/:id' do
+        if !logged_in?
+            redirect '/login'
+        end
+        @assignment = Assignment.find_by_id(params[:id])
+        if params[:assignment][:content] == "" || params[:assignment][:title] == ""
+            redirect "assignments/#{@assignment.id}/edit"
+        else
+            binding.pry
+            @assignment.update(title: params[:assignment][:title], content: params[:assignment][:content])
+            redirect "/assignments/#{@assignment.id}"
+        end
+    end
+
+    
     
 
 end
