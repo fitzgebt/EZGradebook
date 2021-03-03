@@ -1,4 +1,4 @@
-class SongGenre < ActiveRecord::Base
+class AssignmentStudent < ActiveRecord::Base
     belongs_to :assignment
     belongs_to :student
   end

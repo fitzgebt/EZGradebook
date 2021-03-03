@@ -46,6 +46,7 @@ class AssignmentsController < ApplicationController
         if logged_in?
             @assignment = Assignment.find_by_id(params[:id])
             @teacher = Teacher.find_by_id(@assignment.teacher_id)
+            @students = Student.all
             erb :'/assignments/show'
         else
             redirect '/teachers/login'

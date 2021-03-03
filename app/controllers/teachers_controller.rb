@@ -12,7 +12,7 @@ class TeachersController < ApplicationController
         if Teacher.create(params).id
             session[:teacher_id] = Teacher.last.id
             @teacher = current_user
-            redirect "/teachers/#{current_user.id}"
+            redirect "/teachers/#{current_user.slug}"
         else
             redirect '/signup' 
         end
@@ -20,7 +20,7 @@ class TeachersController < ApplicationController
 
     get '/login' do
         if logged_in?
-            redirect "/teachers/#{current_user.id}"
+            redirect "/teachers/#{current_user.slug}"
         else
             erb :'/teachers/login'
         end
@@ -30,7 +30,7 @@ class TeachersController < ApplicationController
         @teacher = Teacher.find_by(username: params[:username])
         if @teacher && @teacher.authenticate(params[:password])
             session[:teacher_id] = @teacher.id
-            redirect "/teachers/#{current_user.id}"
+            redirect "/teachers/#{current_user.slug}"
         else
             redirect '/login'
         end

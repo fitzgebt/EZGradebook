@@ -10,20 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_02_194442) do
-
-  create_table "assignemnts_students", id: false, force: :cascade do |t|
-    t.integer "assignemnt_id", null: false
-    t.integer "student_id", null: false
-    t.string "grade"
-    t.index "\"assignment_id\", \"student_id\"", name: "index_assignemnts_students_on_assignment_id_and_student_id"
-    t.index "\"student_id\", \"assignment_id\"", name: "index_assignemnts_students_on_student_id_and_assignment_id"
-  end
+ActiveRecord::Schema.define(version: 2021_03_03_210249) do
 
   create_table "assignments", force: :cascade do |t|
     t.string "title"
     t.integer "teacher_id"
     t.text "content"
+  end
+
+  create_table "assignments_students", id: false, force: :cascade do |t|
+    t.integer "assignemnt_id", null: false
+    t.integer "student_id", null: false
+    t.string "grade"
+    t.index "\"assignment_id\", \"student_id\"", name: "index_assignemnts_students_on_assignment_id_and_student_id"
+    t.index "\"student_id\", \"assignment_id\"", name: "index_assignemnts_students_on_student_id_and_assignment_id"
   end
 
   create_table "students", force: :cascade do |t|

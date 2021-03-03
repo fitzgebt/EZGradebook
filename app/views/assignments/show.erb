@@ -1,6 +1,7 @@
 <h2><%=@assignment.title%></h2>
 <p><%=@assignment.content%></p>
-
+<h2>Students With This Assignment:</h2>
+<li><a href="/students/<%= student.slug %>">Their Assignments</a><br>
 <body>
 <p><em>created by - <%=@teacher.fname%> <%=@teacher.lname%></em></p>
 <p><a href="/assignments/<%=@assignment.id%>/edit" ><button>Edit This Post</button></a></p>
@@ -8,7 +9,7 @@
 <br>
 <br>
 <p><a href="/assignments" ><button>View All Assignments</button></a></p>
-<p><a href="/teachers/<%=current_user.id%>" ><button>View Your Assignments</button></a></p>
+<p><a href="/teachers/<%=current_user.slug%>" ><button>View Your Assignments</button></a></p>
 <p><a href="/teachers" ><button>View All Teachers</button></a></p>
 <p><a href="/logout" ><button>Log Out</button></a></p>
 </body>
