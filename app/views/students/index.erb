@@ -1,0 +1,8 @@
+<html>
+    <h2>List of All Students</h2>
+        <% @students.each do |student| %>
+            <li><%= student.lname %>, <%= student.fname %></li>
+            <li><a href="/students/<%= student.slug %>">Their Assignments</a>
+        <% end %>
+
+</html>
