@@ -66,7 +66,17 @@ class AssignmentsController < ApplicationController
         end
     end
 
-    
-    
+    delete '/assignments/:id' do
+        if !logged_in?
+            redirect '/login'
+        end
+        @assignment = Assignment.find_by_id(params[:id])
+        if current_user.id == @assignment.teacher_id
+            @assignment.destroy
+            redirect "/teachers/#{current_user.id}"
+        else
+        redirect "/teachers/#{current_user.id}"
+        end
+    end
 
 end

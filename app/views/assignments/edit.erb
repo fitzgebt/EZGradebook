@@ -16,6 +16,12 @@
             <input type='submit' value='Edit Assignment'>
 </form>
 <br>
+
+<form action="/assignments/<%=@assignment.id%>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" name="submit" value="Delete Assignment">
+    </form>
+
 <br>
 <br>
 <p><a href="/assignments" ><button>View All Assignments</button></a></p>
