@@ -1,8 +1,8 @@
-class TeacherswController < ApplicationController
+class TeachersController < ApplicationController
 
     get '/signup' do
         if logged_in?
-            redirect '/assignments'
+            redirect '/teachers/#{current_user.id}'
         end
         erb :'teachers/new'
     end
@@ -10,25 +10,27 @@ class TeacherswController < ApplicationController
     post '/signup' do
         if Teacher.create(params).id
             session[:teacher_id] = Teacher.last.id
-            redirect '/assignments'
+            @teacher = current_user.id
+            redirect '/teachers/#{current_user.id}'
         end
         redirect '/signup' 
     end
 
     get '/login' do
         if logged_in?
-            redirect '/assignments'
+            redirect '/teachers/#{current_user.id}'
         end
         erb :'/teachers/login'
     end
 
     post '/login' do
-        @teacher = Teacher.find_by(username: params[:teacher][:username])
-        if @teacher && @teacher.authenticate(params[:teacher][:password])
+        binding.pry
+        @teacher = Teacher.find_by(username: params[:username])
+        if @teacher && @teacher.authenticate(params[:password])
             session[:teacher_id] = @teacher.id
-            redirect '/assignments'
+            redirect '/teachers/#{current_user.id}'
         end
-        erb :'teachers/login'
+        redirect '/login'
     end
 
     get '/teachers' do
@@ -36,7 +38,7 @@ class TeacherswController < ApplicationController
       erb :'/teachers/index'
     end
 
-    get 'logout' do
+    get '/logout' do
         if !logged_in?
             redirect '/'
         end
@@ -44,12 +46,12 @@ class TeacherswController < ApplicationController
         redirect '/'
     end
       
-    get '/teachers/:slug' do
+    get '/teachers/:id' do
         if logged_in?
-            @teacher = teacher.find_by_slug(params[:slug])
+            @teacher = Teacher.find_by_id(params[:id])
             erb :'/teachers/show'
         end
-        erb :'/teachers/login'
+        redirect '/login'
     end
 
 

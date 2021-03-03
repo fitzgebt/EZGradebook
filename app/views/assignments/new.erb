@@ -1,0 +1,21 @@
+<h2>Create a new Assignemnt:</h2>
+
+<form action='/assignments' method="POST">
+    <p>
+            <label for="title">Title: </label>
+            <input type="text" name="assignment[title]" id='assignment_title'><br>
+    </p>
+    <p>
+            <label for="content">Content: </label>
+            <textarea name="assignment[content]" id="assignment_content" rows="4" cols="50"></textarea><br>
+    </p>
+
+            <input type='submit' value='Create Assignment'>
+</form>
+<br>
+<br>
+<br>
+<p><a href="/assignments" ><button>View All Assignments</button></a></p>
+<p><a href="/teachers/<%current_user.id%>" ><button>View Your Assignments</button></a></p>
+<p><a href="/teachers" ><button>View All Teachers</button></a></p>
+<p><a href="/logout" ><button>Log Out</button></a></p>
