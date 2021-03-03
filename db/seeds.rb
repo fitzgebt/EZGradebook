@@ -45,35 +45,33 @@ students_list.each do |student, name_hash|
   p.save
 end
 
-# teachers_list = {
-#     "Teacher1" => {
-#       username: "fitzgeraldb",
-#       fname: "Brendan",
-#       lname: "Fitzgerald",
-#       password_digest: "fitzgeraldb1"
-#     },
-#     "Teacher2" => {
-#       username: "fitzgeralds",
-#       fname: "Sophia",
-#       lname: "Fitzgerald",
-#       password_digest: "fitzgeralds1"
-#     },
-#     "Teacher3" => {
-#       username: "lewisf",
-#       fname: "Frank",
-#       lname: "Lewis",
-#       password_digest: "lewisf1"
-#     }
-#   }
+@teachers_list = {
+    "Teacher1" => {
+      username: "fitzgeraldb",
+      fname: "Brendan",
+      lname: "Fitzgerald",
+      password: "fitzgeraldb1"
+    },
+    "Teacher2" => {
+      username: "fitzgeralds",
+      fname: "Sophia",
+      lname: "Fitzgerald",
+      password: "fitzgeralds1"
+    },
+    "Teacher3" => {
+      username: "lewisf",
+      fname: "Frank",
+      lname: "Lewis",
+      password: "lewisf1"
+    }
+  }
 
-# teachers_list.each do |teacher, teacher_hash|
-#   p = Teacher.new
-#     teacher_hash.each do |attribute, value|
-#       p[attribute] = value
-#     end
-#   p.save
-# end
+@teachers_list.each do |teacher, teacher_hash|
+  Teacher.create(teacher_hash)
+end
 
+
+# Assignment Seed Below
 
 # title_list = {
 #     "The Mayor" => {

@@ -10,11 +10,15 @@ class Teacher < ActiveRecord::Base
     validates :password, presence: true
   
     def slug
-      self.username.downcase.gsub(" ", "-")
+      fullname=self.fname + " " + self.lname
+      fullname.downcase.gsub(" ", "-")
     end
     
-    def self.find_by_slug(slug)
-      self.all.find {|s| s.slug == slug}
+    def self.find_by_slug(arg)
+      if self.all.find {|s| s.slug == arg}
+      else arg = arg.downcase.gsub(" ", "-")
+        self.all.find {|s| s.slug == arg}
+      end
     end
   end
   

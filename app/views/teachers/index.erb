@@ -1,10 +1,10 @@
 <% @teachers.each do |teacher| %>
     <h4><%= teacher.lname %>, <%= teacher.fname %></h4>
-        <p><a href="/teachers/<%= teacher.id %>" ><button>Profile</button></a></p>
+        <p><a href="/teachers/<%= teacher.slug %>" ><button>Profile</button></a></p>
     <% end %>
     <br>
 <br>
 <br>
 <p><a href="/assignments" ><button>View All Assignments</button></a></p>
-<p><a href="/teachers/<%current_user.id%>" ><button>View Your Assignments</button></a></p>
+<p><a href="/teachers/<%current_user.slug%>" ><button>View Your Assignments</button></a></p>
 <p><a href="/logout" ><button>Log Out</button></a></p>

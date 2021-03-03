@@ -50,9 +50,9 @@ class TeachersController < ApplicationController
         end
     end
       
-    get '/teachers/:id' do
+    get '/teachers/:slug' do
         if logged_in?
-            @teacher = Teacher.find_by_id(params[:id])
+            @teacher = Teacher.find_by_slug(params[:slug])
             erb :'/teachers/show'
         else
             redirect '/login'

@@ -8,7 +8,7 @@ class Student < ActiveRecord::Base
     
 
     def slug
-      fullname=self.fname+self.lname
+      fullname=self.fname + " " + self.lname
       fullname.downcase.gsub(" ", "-")
       end
       
