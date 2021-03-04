@@ -4,7 +4,13 @@
 
 <h2>Students With This Assignment:</h2>
 <!-- iteration of students attached to assignemnt.id-->
-
+<% @assignment.assignments_students.each do |assignment| %>
+    <% Student.all.each do |student| %>
+        <% if student.id == assignment.student_id %>
+            <%= student.lname %>, <%= student.fname %> -- <%= assignment.grade %><br>
+        <% end %>
+    <% end %>
+<% end %>    
 
 
 <p><a href="/assignments/<%=@assignment.id%>/edit" ><button>Edit This Post</button></a></p>

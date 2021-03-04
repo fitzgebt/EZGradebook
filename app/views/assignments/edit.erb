@@ -14,10 +14,15 @@
     </p>
 
     <p>
-        <label for="students_assigned">Update Grades for this Assignment:</label>
+        <label for="students_assigned">Update Grades for this Assignment:</label><br>
         <% @students.each do |student| %>
-        <input type="text" name="student[grade]" value="<%=@assignment.student.grade%>" id="student_grade">
-        <%end%>
+            <label for="student_grade"><%= student.lname %>, <%= student.fname %></label>
+            <% @assignment.assignments_students.each do |assignment| %>
+                <%if assignment.student_id == student.id %>
+                    <input type="text" name="students[<%=student.id%>][grade]" id="student_grade" value="<%= assignment.grade %>"><br>
+                <% end %>
+            <% end %>
+        <% end %>
     </p>
 
             <input type='submit' value='Edit Assignment'>

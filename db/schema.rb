@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_03_211649) do
+ActiveRecord::Schema.define(version: 2021_03_04_190039) do
 
   create_table "assignments", force: :cascade do |t|
     t.string "title"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2021_03_03_211649) do
     t.text "content"
   end
 
-  create_table "assignments_students", id: false, force: :cascade do |t|
+  create_table "assignments_students", force: :cascade do |t|
     t.integer "assignment_id", null: false
     t.integer "student_id", null: false
     t.string "grade"

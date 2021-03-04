@@ -25,12 +25,11 @@ class AssignmentsController < ApplicationController
             @assignment.teacher_id = current_user.id
             @students = Student.all
             @students.each do |student|
-                params[:students][:grade].each do |grade|
-                    if !AssignmentsStudent.find_by(assignment_id: @assignment.id, student_id: student.id)
-                        join_table_obj = AssignmentsStudent.create(assignment_id: @assignment.id, student_id: student.id, grade: grade)
-                    end
-                end
+                AssignmentsStudent.create(assignment_id: @assignment.id, student_id: student.id)
             end
+            @assignment.assignments_students.each do |assignment_student|
+                assignment_student.update(grade: params[:students][assignment_student.student_id.to_s][:grade])
+            end           
             @assignment.save
             redirect "/assignments/#{@assignment.id}"
         else
@@ -43,7 +42,7 @@ class AssignmentsController < ApplicationController
             redirect '/login'
         end   
         @assignment = Assignment.find_by_id(params[:id])
-        @students = Students.all
+        @students = Student.all
         if @assignment.teacher_id == current_user.id
             erb :'/assignments/edit'
         else
@@ -56,7 +55,6 @@ class AssignmentsController < ApplicationController
         if logged_in?
             @assignment = Assignment.find_by_id(params[:id])
             @teacher = Teacher.find_by_id(@assignment.teacher_id)
-            @students = Student.all
             erb :'/assignments/show'
         else
             redirect '/teachers/login'
@@ -71,10 +69,10 @@ class AssignmentsController < ApplicationController
         if params[:assignment][:content] == "" || params[:assignment][:title] == ""
             redirect "assignments/#{@assignment.id}/edit"
         else
-            binding.pry
-            @assignment.update(title: params[:assignment][:title], content: params[:assignment][:content])
-            binding.pry
-            @assignment.students.grades.update(params[:student])
+            @assignment.update(title: params[:assignment][:title], content: params[:assignment][:content])         
+            @assignment.assignments_students.each do |assignment_student|
+                assignment_student.update(grade: params[:students][assignment_student.student_id.to_s][:grade])
+            end           
             redirect "/assignments/#{@assignment.id}"
         end
     end

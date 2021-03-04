@@ -11,11 +11,11 @@
     </p>
 
     <p>
-            <label for="students">Assign Students:</label>
+            <label for="students">Students Grades:</label>
             <% @students.each do |student| %>
                 <label for="student_grade"><%= student.lname %>, <%= student.fname %></label>
-                <input type="text" name="students[grade][]" id="student_grade">
-                <% end %> 
+                <input type="text" name="students[<%=student.id%>][grade]" id="student_grade" %><br>
+                <%end%>
     </p>
             <input type='submit' value='Create Assignment'>
 </form>
