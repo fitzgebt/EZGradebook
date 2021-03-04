@@ -1,6 +1,9 @@
 <html>
     <h2>Student:</h2>
     <h4><%= @student.lname %>, <%=@student.fname %></h4>
-    
+    <% @student.assignments_students.each do |assignment| %>
+        Title: <%= (Assignment.find_by_id(assignment.assignment_id)).title%>, Grade: <%=assignment.grade%><br>
+        <a href="/assignments/<%= assignment.assignment_id %>">Click to View Assignment</a>
+        <%end%>
 
 </html>

@@ -11,7 +11,7 @@
     </p>
 
     <p>
-            <label for="students">Students Grades:</label>
+            <label for="students">Students Grades:</label><br>
             <% @students.each do |student| %>
                 <label for="student_grade"><%= student.lname %>, <%= student.fname %></label>
                 <input type="text" name="students[<%=student.id%>][grade]" id="student_grade" %><br>
