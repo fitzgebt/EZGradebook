@@ -1,6 +1,6 @@
 class Student < ActiveRecord::Base
-    has_many :students_assignments
-    has_many :assignments, through: :students_assignments
+    has_many :assignments_students
+    has_many :assignments, through: :assignments_students
     has_many :teachers, through: :assignments
 
     validates :fname, presence: true

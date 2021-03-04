@@ -13,6 +13,13 @@
     <textarea name="assignment[content]" value="<%=@assignment.content%>" id="assignment_content" rows="4" cols="50" ><%=@assignment.content%></textarea><br>
     </p>
 
+    <p>
+        <label for="students_assigned">Update Grades for this Assignment:</label>
+        <% @students.each do |student| %>
+        <input type="text" name="student[grade]" value="<%=@assignment.student.grade%>" id="student_grade">
+        <%end%>
+    </p>
+
             <input type='submit' value='Edit Assignment'>
 </form>
 <br>
@@ -22,9 +29,13 @@
     <input type="submit" name="submit" value="Delete Assignment">
     </form>
 
+
+    <!-- Add form action="/assignments-students" method="POST" for  grades > --> 
+
+
 <br>
 <br>
 <p><a href="/assignments" ><button>View All Assignments</button></a></p>
-<p><a href="/teachers/<%=current_user.id%>" ><button>View Your Assignments</button></a></p>
+<p><a href="/teachers/<%=current_user.slug%>" ><button>View Your Assignments</button></a></p>
 <p><a href="/teachers" ><button>View All Teachers</button></a></p>
 <p><a href="/logout" ><button>Log Out</button></a></p>

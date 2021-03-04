@@ -10,8 +10,20 @@
             <textarea name="assignment[content]" id="assignment_content" rows="4" cols="50"></textarea><br>
     </p>
 
+    <p>
+            <label for="students">Assign Students:</label>
+            <% @students.each do |student| %>
+                <label for="student_grade"><%= student.lname %>, <%= student.fname %></label>
+                <input type="text" name="students[grade][]" id="student_grade">
+                <% end %> 
+    </p>
             <input type='submit' value='Create Assignment'>
 </form>
+
+
+<!-- Add form action="/assignments-students" method="POST" for  grades > --> 
+
+
 <br>
 <br>
 <br>

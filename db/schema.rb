@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_03_210249) do
+ActiveRecord::Schema.define(version: 2021_03_03_211649) do
 
   create_table "assignments", force: :cascade do |t|
     t.string "title"
@@ -19,11 +19,11 @@ ActiveRecord::Schema.define(version: 2021_03_03_210249) do
   end
 
   create_table "assignments_students", id: false, force: :cascade do |t|
-    t.integer "assignemnt_id", null: false
+    t.integer "assignment_id", null: false
     t.integer "student_id", null: false
     t.string "grade"
-    t.index "\"assignment_id\", \"student_id\"", name: "index_assignemnts_students_on_assignment_id_and_student_id"
-    t.index "\"student_id\", \"assignment_id\"", name: "index_assignemnts_students_on_student_id_and_assignment_id"
+    t.index ["assignment_id", "student_id"], name: "index_assignments_students_on_assignment_id_and_student_id"
+    t.index ["student_id", "assignment_id"], name: "index_assignments_students_on_student_id_and_assignment_id"
   end
 
   create_table "students", force: :cascade do |t|

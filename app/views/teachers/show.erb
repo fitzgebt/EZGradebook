@@ -1,13 +1,20 @@
 <h3>Assignments Created by: <%= @teacher.lname %>, <%= @teacher.fname %></h3>
 <p>--<a href="/logout" ><button>LogOut</button></a></p>
 <% @teacher.assignments.each do |assignment| %>
-    <h4><%= assignment.title %><br></h4>
+    <h2><%= assignment.title %><br></h2>
     <p><%= assignment.content %></p>
     <p>--<a href="/assignments/<%= assignment.id %>" ><button>View This Assignment</button></a></p>
+    <h4>Students With This Assignment:</h4>
+    <%if assignment.students%>
+    <% assignment.students.each do |student|%>
+        <li><%= student.lname %>, <%= student.fname %></li>
+       <% end %>
+       <%end%> 
 <% end %>
 <br>
 <br>
 <br>
+<p><a href="/assignments/new" ><button>Create a New Assignments</button></a></p>
 <p><a href="/assignments" ><button>View All Assignments</button></a></p>
 <p><a href="/teachers/<%=current_user.slug%>" ><button>View Your Assignments</button></a></p>
 <p><a href="/students" ><button>View All Students</button></a></p>
