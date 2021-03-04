@@ -7,7 +7,6 @@
 <% @assignment.assignments_students.each do |assignment| %>
     <% Student.all.each do |student| %>
         <% if student.id == assignment.student_id %>
-            
             <a href="/students/<%= student.slug %>" ><%= student.lname %>, <%= student.fname %> -- <%= assignment.grade %></a><br>
         <% end %>
     <% end %>
