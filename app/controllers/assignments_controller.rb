@@ -54,7 +54,6 @@ class AssignmentsController < ApplicationController
             redirect '/teachers/login'
         end
         @assignment = Assignment.find_by_id(params[:id])
-        binding.pry
         @teacher = Teacher.find_by_id(@assignment.teacher_id)
         erb :'/assignments/show'
     end
