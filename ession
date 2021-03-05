@@ -1,0 +1,15 @@
+
+[1mFrom:[0m /home/fitzgebt/Development/code/Phase2/Teacher_Student_Assignments/app/views/layout.erb:30 self.__tilt_70368562927960:
+
+    [1;34m25[0m:                 <a class="nav-link" href="/students">Students</a>
+    [1;34m26[0m:               </li>
+    [1;34m27[0m:               <li class="nav-item dropdown">
+    [1;34m28[0m:                 <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Assignments</a>
+    [1;34m29[0m:                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+ => [1;34m30[0m:                   <!-- <%binding.pry%> -->
+    [1;34m31[0m:                   <% if current_user %>
+    [1;34m32[0m:                     <li><a class="dropdown-item" href="/teachers/<%=session[:teacher_id]%>">My Assignments</a></li>
+    [1;34m33[0m:                     <%else%>
+    [1;34m34[0m:                     <li><a class="dropdown-item" href="/assignments">My Assignments</a></li>
+    [1;34m35[0m:                   <%end%>
+

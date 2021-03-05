@@ -1,17 +1,10 @@
-<h3>All Assignments from ALL Teachers</h3>
-<p>--<a href="/logout" ><button>LogOut</button></a></p>
-
-
-    <% @assignments.each do |assignment| %>
-        <h4><%= assignment.title %></h4>
-        <% teacher = Teacher.find_by_id(assignment.teacher_id) %>
-        <%binding.pry%>
-        <p><em>created by - <%=teacher.fname%> <%=teacher.lname%></em></p>
-            <p><%= assignment.content %></p>
-            <p>--<a href="/assignments/<%=assignment.id%>" ><button>View This Assignment</button></a></p>
-    <% end %>
-    <br>
-    <br>
-    <br>
-    <p><a href="/teachers/<%=current_user.slug%>" ><button>View Your Assignments</button></a></p>
-    <p><a href="/teachers" ><button>View All Teachers</button></a></p>
+<div class="container mt-4 p-4 mx-auto bg-white text-dark" style="width: 568px;">
+    <h3>All Assignments from ALL Teachers</h3>
+        <% @assignments.each do |assignment| %>
+            <h4><%= assignment.title %></h4>
+            <% teacher = Teacher.find_by_id(assignment.teacher_id) %>
+            <a href="teachers/<%=teacher.slug%>"<em>created by - <%=teacher.fname%> <%=teacher.lname%></em></a>
+                <p><%= assignment.content %></p>
+                <a href="/assignments/<%=assignment.id%>" ><button class="btn btn-primary">View</button></a></p>
+        <% end %>
+</div>

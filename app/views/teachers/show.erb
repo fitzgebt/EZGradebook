@@ -1,14 +1,17 @@
-<h3>Assignments Created by: <%= @teacher.lname %>, <%= @teacher.fname %></h3>
-<p>--<a href="/logout" ><button>Log Out</button></a></p>
-<% @teacher.assignments.each do |assignment| %>
-    <h2><%= assignment.title %><br></h2>
-    <p><%= assignment.content %></p>
-    <p>--<a href="/assignments/<%= assignment.id %>" ><button>View This Assignment</button></a></p>
-<% end %>
-<br>
-<br>
-<br>
-<p><a href="/assignments/new" ><button>Create a New Assignments</button></a></p>
-<p><a href="/assignments" ><button>View All Assignments</button></a></p>
-<p><a href="/students" ><button>View All Students</button></a></p>
-<p><a href="/teachers" ><button>View All Teachers</button></a></p> 
+<div class="container mt-5 p-4 mx-auto bg-white text-dark">
+
+    <h4 class=" ">Assignments Created by: <%= @teacher.lname %>, <%= @teacher.fname %></h4>
+    
+    <% @teacher.assignments.each do |assignment| %>
+        <div class="container mx-auto bg-white text-dark">
+        <h2><%= assignment.title %><br></h2>
+        <p><%= assignment.content %></p>
+        <a href="/assignments/<%= assignment.id %>" ><button class="btn btn-primary btn-sm p-1">View</button></a>
+        </div>
+    <% end %>
+    <a href="/assignments/new" ><button class="btn btn-primary btn-sm mt-3">Create New Assignment</button></a>
+</div>
+
+
+  
+ 

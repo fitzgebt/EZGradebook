@@ -1,9 +1,13 @@
-<html>
-    <h2>Student:</h2>
+<div class="container mt-5 p-4 mx-auto bg-white text-dark" style="width: 568px;"">
+    <h4>Student:</h4>
     <h4><%= @student.lname %>, <%=@student.fname %></h4>
-    <% @student.assignments_students.each do |assignment| %>
-        Title: <%= (Assignment.find_by_id(assignment.assignment_id)).title%>, Grade: <%=assignment.grade%><br>
-        <a href="/assignments/<%= assignment.assignment_id %>">Click to View Assignment</a>
-        <%end%>
 
-</html>
+    <%if @student.assignments_students%>
+        <% @student.assignments_students.each do |assignment| %>
+            Title: <%= (Assignment.find_by_id(assignment.assignment_id)).title%>, Grade: <%=assignment.grade%><br>
+            <a href="/assignments/<%= assignment.assignment_id %>">View Assignment</a><br>
+            <%end%>
+    <%else%>
+        <p><em>This student currently has no assignments.</em></p>
+    <%end%>
+</div>

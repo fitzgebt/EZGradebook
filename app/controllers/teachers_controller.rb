@@ -37,6 +37,9 @@ class TeachersController < ApplicationController
     end
 
     get '/teachers' do
+        if !logged_in?
+            redirect '/login'
+        end
       @teachers = Teacher.all
       erb :'/teachers/index'
     end
@@ -51,11 +54,15 @@ class TeachersController < ApplicationController
     end
       
     get '/teachers/:slug' do
-        if logged_in?
+        if !logged_in?
+            redirect '/login'
+        end
+        if Teacher.find_by_slug(params[:slug])
             @teacher = Teacher.find_by_slug(params[:slug])
             erb :'/teachers/show'
         else
-            redirect '/login'
+            @teacher = Teacher.find_by_id(params[:slug])
+            erb :'/teachers/show'
         end
     end
 
