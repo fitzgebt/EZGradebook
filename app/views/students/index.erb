@@ -1,8 +1,7 @@
-<html>
+<div class="container mt-4 p-4 mx-auto bg-white text-dark" style="width: 568px;">
     <h2>List of All Students</h2>
         <% @students.each do |student| %>
-            <li><%= student.lname %>, <%= student.fname %></li>
-            <li><a href="/students/<%= student.slug %>">Their Assignments</a><br>
+            <%= student.lname %>, <%= student.fname %>
+            <a href="/students/<%= student.slug %>">Their Assignments</a><br>
         <% end %>
-
-</html>
+</div>

@@ -1,10 +1,6 @@
+<div class="container mt-5 p-4 mx-auto bg-white text-dark" style="width: 468px;">
 <% @teachers.each do |teacher| %>
-    <h4><%= teacher.lname %>, <%= teacher.fname %></h4>
-        <p><a href="/teachers/<%= teacher.slug %>" ><button>Profile</button></a></p>
+    <h4 class="m-2 p2"><%= teacher.lname %>, <%= teacher.fname %></h4>
+        <a href="/teachers/<%= teacher.slug %>" ><button class="btn btn-primary btn-sm">Profile</button></a>
     <% end %>
-    <br>
-<br>
-<br>
-<p><a href="/assignments" ><button>View All Assignments</button></a></p>
-<p><a href="/teachers/<%=current_user.slug%>" ><button>View Your Assignments</button></a></p>
-<p><a href="/logout" ><button>Log Out</button></a></p>
+</div>

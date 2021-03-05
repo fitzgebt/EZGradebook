@@ -1,46 +1,38 @@
-<h2>Edit Assignemnt:</h2>
+<div class="container mt-2 p-4 mx-auto bg-white text-dark" style="width: 568px" aria-describedby="main_div">
+    <form action='/assignments/<%=@assignment.id%>' method="POST">
+        <input type="hidden" name="_method" value="PATCH">
+        <h5>Edit Assignemnt:</h5>
+        <div class="form-group">
+            <label for="title">Title: </label>
+            <div class="sol-sm-9">    
+                <input class="form-control" type="text" name="assignment[title]" id='assignment_title' value="<%=@assignment.title%>">
+            </div>
+            <div class="form-control">
+                <label for="content">Content: </label>
+                <div class="col-sm-9">
+                    <textarea name="assignment[content]" value="<%=@assignment.content%>" id="assignment_content" rows="4" cols="50" ><%=@assignment.content%></textarea>
+                </div>
+                <div class="form-control">
+                    <label for="students_assigned">Update Grades for this Assignment:</label>
+                    <div class="container mx-auto bg-white text-dark"></div>
+                    <% @students.each do |student| %>
+                    
+                        <label for="student_grade"><%= student.lname %>, <%= student.fname %></label>
+                        <% @assignment.assignments_students.each do |assignment| %>
+                            <%if assignment.student_id == student.id %>
+                                <input  class="form-control" type="text" name="students[<%=student.id%>][grade]" id="student_grade" value="<%= assignment.grade %>">
+                            <% end %>
+                        <% end %>
+                    <% end %>
+                    </div>
+                </div>
 
-<form action='/assignments/<%=@assignment.id%>' method="POST">
-    <input type="hidden" name="_method" value="PATCH">
-    
-    <p>
-    <label for="title">Title: </label>
-    <input type="text" name="assignment[title]" id='assignment_title' value="<%=@assignment.title%>"><br>
-    </p>
+                    <button class="btn btn-primary btn-sm mt-3" type='submit' value='Edit Assignment'>Submit Edit</button>
 
-    <p>
-    <label for="content">Content: </label>
-    <textarea name="assignment[content]" value="<%=@assignment.content%>" id="assignment_content" rows="4" cols="50" ><%=@assignment.content%></textarea><br>
-    </p>
-
-    <p>
-        <label for="students_assigned">Update Grades for this Assignment:</label><br>
-        <% @students.each do |student| %>
-            <label for="student_grade"><%= student.lname %>, <%= student.fname %></label>
-            <% @assignment.assignments_students.each do |assignment| %>
-                <%if assignment.student_id == student.id %>
-                    <input type="text" name="students[<%=student.id%>][grade]" id="student_grade" value="<%= assignment.grade %>"><br>
-                <% end %>
-            <% end %>
-        <% end %>
-    </p>
-
-            <input type='submit' value='Edit Assignment'>
-</form>
-<br>
-
-<form action="/assignments/<%=@assignment.id%>" method="POST">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" name="submit" value="Delete Assignment">
     </form>
 
-
-    <!-- Add form action="/assignments-students" method="POST" for  grades > --> 
-
-
-<br>
-<br>
-<p><a href="/assignments" ><button>View All Assignments</button></a></p>
-<p><a href="/teachers/<%=current_user.slug%>" ><button>View Your Assignments</button></a></p>
-<p><a href="/teachers" ><button>View All Teachers</button></a></p>
-<p><a href="/logout" ><button>Log Out</button></a></p>
+    <form action="/assignments/<%=@assignment.id%>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <button class="btn btn-danger btn-sm mt-3" type="submit" name="submit" value="Delete Assignment" id="main_div" style="float: right;">Delete Assignment</button>
+    </form>
+</div>

@@ -1,5 +1,8 @@
 class StudentsController < ApplicationController
     get '/students' do
+        if !logged_in?
+            redirect '/login'
+        end
         @students = Student.all
         erb :'/students/index'
     end

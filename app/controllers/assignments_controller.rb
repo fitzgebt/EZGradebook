@@ -26,7 +26,11 @@ class AssignmentsController < ApplicationController
                 AssignmentsStudent.create(assignment_id: assignment.id, student_id: student.id)
             end
             assignment.assignments_students.each do |assignment_student|
-                assignment_student.update(grade: params[:students][assignment_student.student_id.to_s][:grade])
+                if params[:students][assignment_student.student_id.to_s][:grade] == ""
+                    assignment_student.update(grade: "Missing")
+                else
+                    assignment_student.update(grade: params[:students][assignment_student.student_id.to_s][:grade])
+                end
             end           
             assignment.save
             redirect "/assignments/#{assignment.id}"
@@ -80,6 +84,9 @@ class AssignmentsController < ApplicationController
         end
         assignment = Assignment.find_by_id(params[:id])
         if current_user.id == assignment.teacher_id
+            assignment.assignments_students.each do |jt_assignment|
+                jt_assignment.destroy
+            end
             assignment.destroy
             redirect "/teachers/#{current_user.slug}"
         else
