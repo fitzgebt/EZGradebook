@@ -11,6 +11,8 @@
                 <a href="/students/<%= student.slug %>" ><%= student.lname %>, <%= student.fname %> -- <%= assignment.grade %></a><br>
             <% end %>
         <% end %>
-    <% end %>    
-    <a href="/assignments/<%=@assignment.id%>/edit" ><button class="btn btn-primary btn-sm mt-3">Edit This Post</button></a>
+    <% end %>
+    <% if session[:teacher_id] == @teacher.id %>    
+        <a href="/assignments/<%=@assignment.id%>/edit" ><button class="btn btn-primary btn-sm mt-3">Edit This Post</button></a>
+    <%end%>
 </div>

@@ -18,9 +18,9 @@ Clone repository to your machine.
 Install Gem Bundle
 
     - Run bundle_install in your terminal to install the gems.
+    - Enter 'rake db:seed' in your terminal to provide test data. 
 
 Starting the Program
-    - Enter 'rake db:seed' in your terminal to provide test data. 
     - This application will run in your browser via Shotgun. Type 'shotgun' in your terminal, and navigate to 'http://localhost:9393/' in your browser.
     - Create a new account to begin accessing each feature
     -Links on the webpage will allow you to navigate across the site
