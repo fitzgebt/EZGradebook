@@ -1,8 +1,8 @@
 class Teacher < ActiveRecord::Base
     has_secure_password
     has_many :assignments 
-    has_many :students_assignments
-    has_many :students, through: :students_assignments
+    has_many :assignments_students
+    has_many :students, through: :assignments_students
   
     validates :username, presence: true, uniqueness: true
     validates :fname, presence: true
