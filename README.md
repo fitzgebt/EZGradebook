@@ -1,6 +1,6 @@
 # EZGradebook!
 
-EZGradebook! allows Teachers (users) the ability to submit into a databse previously completed assignments, and attach grades to those assignments for their students. Teachers can view assignments submitted by all other teachers, but only have the ability to edit or delete their own assignments. EZGradebook! is an MVC appliaction utilizing Ruby/Sinatra/ActiveRecord/Shotgun.
+EZGradebook! allows Teachers (users) the ability to submit into a database previously completed assignments, and attach grades to those assignments for their students. Teachers can view assignments submitted by all other teachers, but only have the ability to edit or delete their own assignments. EZGradebook! is an MVC application utilizing Ruby/Sinatra/ActiveRecord/Shotgun.
 
 ## Summary
 
